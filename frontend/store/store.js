@@ -1,7 +1,7 @@
 import { createStore } from 'redux';
 import RootReducer from '../reducers/root_reducer';
 
-const configureStore = (preloadedState = {'tasks':'daniel'}) => {
+const configureStore = (preloadedState = {}) => {
   const store = createStore(RootReducer, preloadedState);
   return store;
 }

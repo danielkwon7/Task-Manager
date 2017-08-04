@@ -1,0 +1,20 @@
+.header {
+  background-image: url(https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png);
+  height: 135px;
+  background-size: 400px;
+  background-position: center;
+}
+
+.sub-header {
+  background-image: url(http://media.corporate-ir.net/media_files/IROL/17/176060/img/logos/amazon_logo_RGB.jpg);
+  height: 100px;
+  background-size: 275px;
+  background-position: center;
+}
+
+.sub-sub-header {
+  background-image: url(https://www.seeklogo.net/wp-content/uploads/2011/08/facebook-logo-vector-400x400.png);
+  height: 200px;
+  background-size: 370px;
+  background-position: center;
+}

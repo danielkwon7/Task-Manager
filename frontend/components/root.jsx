@@ -1,7 +1,11 @@
 import React from 'react';
 
 const Root = () => (
-  <h1>Hello</h1>
+  <div>
+    <h1 className="header"></h1>
+    <h2 className="sub-header"></h2>
+    <h2 className="sub-sub-header"></h2>
+  </div>
 );
 
 export default Root;

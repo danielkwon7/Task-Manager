@@ -86,11 +86,17 @@ var _store = __webpack_require__(191);
 
 var _store2 = _interopRequireDefault(_store);
 
+var _task_actions = __webpack_require__(210);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var newTasks = [{ id: 3, title: "Google", body: "Become a software engineer at Google" }, { id: 4, title: "Facebook", body: "Become a software engineer at Facebook" }];
 
 document.addEventListener('DOMContentLoaded', function () {
   var store = (0, _store2.default)();
   window.store = store;
+  window.newTasks = newTasks;
+  window.receiveTasks = _task_actions.receiveTasks;
   var root = document.getElementById('content');
   _reactDom2.default.render(_react2.default.createElement(_root2.default, null), root);
 });
@@ -22859,9 +22865,11 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var Root = function Root() {
   return _react2.default.createElement(
-    'h1',
+    "div",
     null,
-    'Hello'
+    _react2.default.createElement("h1", { className: "header" }),
+    _react2.default.createElement("h2", { className: "sub-header" }),
+    _react2.default.createElement("h2", { className: "sub-sub-header" })
   );
 };
 
@@ -22887,7 +22895,7 @@ var _root_reducer2 = _interopRequireDefault(_root_reducer);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var configureStore = function configureStore() {
-  var preloadedState = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : { 'tasks': 'daniel' };
+  var preloadedState = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
 
   var store = (0, _redux.createStore)(_root_reducer2.default, preloadedState);
   return store;
@@ -23540,17 +23548,89 @@ exports.default = RootReducer;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+
+var _task_actions = __webpack_require__(210);
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+var initialState = {
+  1: {
+    id: 1,
+    title: 'Work on a/A projects',
+    body: 'Review all materials learnt so far',
+    done: false
+  },
+
+  2: {
+    id: 2,
+    title: 'Learn from mistakes',
+    body: 'Acquire a resilient stance in facing obstacles',
+    done: true
+  }
+};
+
 var tasksReducer = function tasksReducer() {
-  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
   var action = arguments[1];
 
   switch (action.type) {
+    case _task_actions.RECEIVE_TASKS:
+      var newState = {};
+      action.tasks.forEach(function (task) {
+        newState[task.id] = task;
+      });
+    case _task_actions.RECEIVE_TASK:
+      var newTask = _defineProperty({}, action.task.id, action.task);
+      return merge({}, state, newTask);
+      return newTask;
     default:
       return state;
   }
 };
 
 exports.default = tasksReducer;
+
+/***/ }),
+/* 210 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var RECEIVE_TASKS = exports.RECEIVE_TASKS = "RECEIVE_TASKS";
+var RECEIVE_TASK = exports.RECEIVE_TASK = "RECEIVE_TASK";
+var REMOVE_TASK = exports.REMOVE_TASK = "REMOVE_TASK";
+
+var receiveTasks = exports.receiveTasks = function receiveTasks(tasks) {
+  return {
+    type: RECEIVE_TASKS,
+    tasks: tasks
+  };
+};
+
+var receiveTask = exports.receiveTask = function receiveTask(task) {
+  return {
+    type: RECEIVE_TASK,
+    task: task
+  };
+};
+
+var removeTask = exports.removeTask = function removeTask(task) {
+  return {
+    type: REMOVE_TASK,
+    task: task
+  };
+};
+
+var taskError = exports.taskError = function taskError(error) {
+  return {
+    type: TASK_ERROR,
+    error: error
+  };
+};
 
 /***/ })
 /******/ ]);
