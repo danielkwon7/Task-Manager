@@ -21,13 +21,11 @@ const tasksReducer = (state = initialState, action) => {
   switch(action.type) {
     case RECEIVE_TASKS:
       const newState = {};
-      action.tasks.forEach((task) => {
-        newState[task.id] = task;
-      });
+      action.tasks.forEach((task) => newState[task.id] = task);
+      return newState;
     case RECEIVE_TASK:
       const newTask = {[action.task.id]: action.task};
       return merge({}, state, newTask);
-    return newTask;
     default:
       return state;
   }

@@ -23577,12 +23577,12 @@ var tasksReducer = function tasksReducer() {
     case _task_actions.RECEIVE_TASKS:
       var newState = {};
       action.tasks.forEach(function (task) {
-        newState[task.id] = task;
+        return newState[task.id] = task;
       });
+      return newState;
     case _task_actions.RECEIVE_TASK:
       var newTask = _defineProperty({}, action.task.id, action.task);
       return merge({}, state, newTask);
-      return newTask;
     default:
       return state;
   }
