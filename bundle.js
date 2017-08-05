@@ -22861,15 +22861,20 @@ var _react = __webpack_require__(50);
 
 var _react2 = _interopRequireDefault(_react);
 
+var _app = __webpack_require__(211);
+
+var _app2 = _interopRequireDefault(_app);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var Root = function Root() {
   return _react2.default.createElement(
-    "div",
+    'div',
     null,
-    _react2.default.createElement("h1", { className: "header" }),
-    _react2.default.createElement("h2", { className: "sub-header" }),
-    _react2.default.createElement("h2", { className: "sub-sub-header" })
+    _react2.default.createElement(_app2.default, null),
+    _react2.default.createElement('h1', { className: 'header' }),
+    _react2.default.createElement('h2', { className: 'sub-header' }),
+    _react2.default.createElement('h2', { className: 'sub-sub-header' })
   );
 };
 
@@ -23631,6 +23636,37 @@ var taskError = exports.taskError = function taskError(error) {
     error: error
   };
 };
+
+/***/ }),
+/* 211 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = __webpack_require__(50);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var App = function App() {
+  return _react2.default.createElement(
+    "div",
+    { className: "app" },
+    _react2.default.createElement(
+      "h1",
+      null,
+      "Super Awesome Task List"
+    )
+  );
+};
+
+exports.default = App;
 
 /***/ })
 /******/ ]);
