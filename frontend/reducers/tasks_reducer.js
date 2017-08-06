@@ -1,4 +1,5 @@
 import { RECEIVE_TASKS, RECEIVE_TASK, REMOVE_TASK, TASK_ERROR } from '../actions/task_actions';
+import merge from 'lodash/merge';
 
 
 const initialState = {

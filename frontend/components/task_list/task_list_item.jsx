@@ -11,7 +11,7 @@ class TaskListItem extends React.Component {
 
   toggleDetail(e) {
     e.preventDefault();
-    this.setSTate({ detail: !this.state.detail });
+    this.setState({ detail: !this.state.detail });
   }
 
   toggleTask(e) {
@@ -22,7 +22,7 @@ class TaskListItem extends React.Component {
       { done: !this.props.task.done }
     );
 
-    this.props.receiveTask(toggleTask);
+    this.props.receiveTask(toggledTask);
   }
 
   render() {
@@ -36,7 +36,7 @@ class TaskListItem extends React.Component {
     return (
       <li className="task-list-item">
         <div className="task-header">
-          <h3><a onClick={ this.toggleDetail }>{ title }</h3>
+          <h3><a onClick={ this.toggleDetail }>{ title }</a></h3>
           <button
             className={ done ? "done" : "undone"}
             onClick={ this.toggleTask }>
@@ -49,4 +49,4 @@ class TaskListItem extends React.Component {
   }
 }
 
-export default TaskListItem; 
+export default TaskListItem;

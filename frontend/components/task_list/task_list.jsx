@@ -1,9 +1,16 @@
 import React from 'react';
+import TaskListItem from './task_list_item';
+
 
 class TaskList extends React.Component {
   render() {
-    const {tasks}  = this.props;
-    const taskItems = tasks.map(task => <h1 key={task.id}>{task.title}</h1>);
+    const {tasks, receiveTask }  = this.props;
+    const taskItems = tasks.map(task =>
+      <TaskListItem
+        key={`task-list-item${task.id}`}
+        task={task}
+        receiveTask={ receiveTask } />
+    );
 
     return(
       <div>
