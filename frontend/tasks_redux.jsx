@@ -15,6 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
   window.store = store;
   window.newTasks = newTasks;
   window.receiveTasks = receiveTasks;
+  window.allTasks = allTasks;
   const root = document.getElementById('content');
   ReactDOM.render(<Root store={ store }/>, root);
 })

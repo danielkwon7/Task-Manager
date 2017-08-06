@@ -10297,6 +10297,7 @@ document.addEventListener('DOMContentLoaded', function () {
   window.store = store;
   window.newTasks = newTasks;
   window.receiveTasks = _task_actions.receiveTasks;
+  window.allTasks = _selectors.allTasks;
   var root = document.getElementById('content');
   _reactDom2.default.render(_react2.default.createElement(_root2.default, { store: store }), root);
 });
