@@ -10,7 +10,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  receiveTasks: tasks => dispatch(receiveTasks(tasks)),
+  receiveTasks: () => dispatch(receiveTasks()),
   receiveTask: task => dispatch(receiveTask(task))
 });
 

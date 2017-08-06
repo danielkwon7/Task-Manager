@@ -22977,20 +22977,25 @@ var _react = __webpack_require__(32);
 
 var _react2 = _interopRequireDefault(_react);
 
+var _task_list_container = __webpack_require__(235);
+
+var _task_list_container2 = _interopRequireDefault(_task_list_container);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var App = function App() {
   return _react2.default.createElement(
-    "div",
-    { className: "app" },
+    'div',
+    { className: 'app' },
+    _react2.default.createElement(_task_list_container2.default, null),
     _react2.default.createElement(
-      "h1",
+      'h1',
       null,
-      "Super Awesome Companies You'll Get Hired To"
+      'Super Awesome Companies You\'ll Get Hired To'
     ),
-    _react2.default.createElement("h1", { className: "header" }),
-    _react2.default.createElement("h2", { className: "sub-header" }),
-    _react2.default.createElement("h2", { className: "sub-sub-header" })
+    _react2.default.createElement('h1', { className: 'header' }),
+    _react2.default.createElement('h2', { className: 'sub-header' }),
+    _react2.default.createElement('h2', { className: 'sub-sub-header' })
   );
 };
 
@@ -23649,6 +23654,13 @@ var initialState = {
     id: 2,
     title: 'Learn from mistakes',
     body: 'Acquire a resilient stance in facing obstacles',
+    done: true
+  },
+
+  3: {
+    id: 3,
+    title: 'Make wise decisions',
+    body: 'Every moment is a decision point',
     done: true
   }
 };
@@ -24947,6 +24959,115 @@ function verifySubselectors(mapStateToProps, mapDispatchToProps, mergeProps, dis
   verify(mapDispatchToProps, 'mapDispatchToProps', displayName);
   verify(mergeProps, 'mergeProps', displayName);
 }
+
+/***/ }),
+/* 232 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(32);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var TaskList = function (_React$Component) {
+  _inherits(TaskList, _React$Component);
+
+  function TaskList() {
+    _classCallCheck(this, TaskList);
+
+    return _possibleConstructorReturn(this, (TaskList.__proto__ || Object.getPrototypeOf(TaskList)).apply(this, arguments));
+  }
+
+  _createClass(TaskList, [{
+    key: "render",
+    value: function render() {
+      var tasks = this.props.tasks;
+
+      var taskItems = tasks.map(function (task) {
+        return _react2.default.createElement(
+          "h1",
+          { key: task.id },
+          task.title
+        );
+      });
+
+      return _react2.default.createElement(
+        "div",
+        null,
+        _react2.default.createElement(
+          "ul",
+          { className: "task-list" },
+          taskItems
+        )
+      );
+    }
+  }]);
+
+  return TaskList;
+}(_react2.default.Component);
+
+exports.default = TaskList;
+
+/***/ }),
+/* 233 */,
+/* 234 */,
+/* 235 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _reactRedux = __webpack_require__(219);
+
+var _task_list = __webpack_require__(232);
+
+var _task_list2 = _interopRequireDefault(_task_list);
+
+var _task_actions = __webpack_require__(89);
+
+var _selectors = __webpack_require__(212);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var mapStateToProps = function mapStateToProps(state) {
+  return {
+    tasks: (0, _selectors.allTasks)(state),
+    state: state
+  };
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    receiveTasks: function receiveTasks() {
+      return dispatch((0, _task_actions.receiveTasks)());
+    },
+    receiveTask: function receiveTask(task) {
+      return dispatch((0, _task_actions.receiveTask)(task));
+    }
+  };
+};
+
+exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_task_list2.default);
 
 /***/ })
 /******/ ]);

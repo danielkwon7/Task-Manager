@@ -15,6 +15,13 @@ const initialState = {
     body: 'Acquire a resilient stance in facing obstacles',
     done: true
   },
+
+  3: {
+    id: 3,
+    title: 'Make wise decisions',
+    body: 'Every moment is a decision point',
+    done: true
+  }
 };
 
 const tasksReducer = (state = initialState, action) => {
