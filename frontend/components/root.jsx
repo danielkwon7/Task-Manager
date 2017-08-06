@@ -1,13 +1,13 @@
 import React from 'react';
 import App from './app';
 
-const Root = () => (
-  <div>
+const Root = ({ store }) => (
+  <Provider store={ store }>
     <App />
     <h1 className="header"></h1>
     <h2 className="sub-header"></h2>
     <h2 className="sub-sub-header"></h2>
-  </div>
+  </Provider>
 );
 
 export default Root;
