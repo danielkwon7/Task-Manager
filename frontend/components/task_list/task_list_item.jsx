@@ -1,5 +1,6 @@
 import React from 'react';
 import merge from 'lodash/merge';
+import TaskDetailViewContainer from './task_detail_view_container';
 
 class TaskListItem extends React.Component {
   constructor(props) {
@@ -28,6 +29,10 @@ class TaskListItem extends React.Component {
   render() {
     const { task, updateTask } = this.props;
     const { title, done } = task;
+    let detail;
+    if (this.state.detail) {
+      detail = <TaskDetailViewContainer task={ task } />;
+    }
 
 
     return (
@@ -40,6 +45,7 @@ class TaskListItem extends React.Component {
             { done ? "Undo" : "Done"}
           </button>
         </div>
+        { detail }
       </li>
     );
   }

@@ -23685,6 +23685,10 @@ var tasksReducer = function tasksReducer() {
     case _task_actions.RECEIVE_TASK:
       var newTask = _defineProperty({}, action.task.id, action.task);
       return (0, _merge2.default)({}, state, newTask);
+    case _task_actions.REMOVE_TASK:
+      nextState = (0, _merge2.default)({}, state);
+      delete nextState[action.task.id];
+      return nextState;
     default:
       return state;
   }
@@ -25061,6 +25065,10 @@ var _merge = __webpack_require__(264);
 
 var _merge2 = _interopRequireDefault(_merge);
 
+var _task_detail_view_container = __webpack_require__(332);
+
+var _task_detail_view_container2 = _interopRequireDefault(_task_detail_view_container);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -25106,6 +25114,10 @@ var TaskListItem = function (_React$Component) {
       var title = task.title,
           done = task.done;
 
+      var detail = void 0;
+      if (this.state.detail) {
+        detail = _react2.default.createElement(_task_detail_view_container2.default, { task: task });
+      }
 
       return _react2.default.createElement(
         'li',
@@ -25129,7 +25141,8 @@ var TaskListItem = function (_React$Component) {
               onClick: this.toggleTask },
             done ? "Undo" : "Done"
           )
-        )
+        ),
+        detail
       );
     }
   }]);
@@ -28267,6 +28280,103 @@ exports.uniqueID = uniqueID;
 function uniqueID() {
   return new Date().getTime();
 }
+
+/***/ }),
+/* 332 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _reactRedux = __webpack_require__(219);
+
+var _task_detail_view = __webpack_require__(333);
+
+var _task_detail_view2 = _interopRequireDefault(_task_detail_view);
+
+var _task_actions = __webpack_require__(89);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch, _ref) {
+  var task = _ref.task;
+  return {
+    removeTask: function removeTask() {
+      return dispatch((0, _task_actions.removeTask)(task));
+    }
+  };
+};
+
+exports.default = (0, _reactRedux.connect)(null, mapDispatchToProps)(_task_detail_view2.default);
+
+/***/ }),
+/* 333 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(32);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var TaskDetailView = function (_React$Component) {
+  _inherits(TaskDetailView, _React$Component);
+
+  function TaskDetailView() {
+    _classCallCheck(this, TaskDetailView);
+
+    return _possibleConstructorReturn(this, (TaskDetailView.__proto__ || Object.getPrototypeOf(TaskDetailView)).apply(this, arguments));
+  }
+
+  _createClass(TaskDetailView, [{
+    key: "render",
+    value: function render() {
+      var _props = this.props,
+          task = _props.task,
+          removeTask = _props.removeTask;
+
+      return _react2.default.createElement(
+        "div",
+        null,
+        _react2.default.createElement(
+          "p",
+          { className: "task-body" },
+          task.body
+        ),
+        _react2.default.createElement(
+          "button",
+          {
+            className: "delete-button",
+            onClick: removeTask },
+          "Delete Task"
+        )
+      );
+    }
+  }]);
+
+  return TaskDetailView;
+}(_react2.default.Component);
+
+exports.default = TaskDetailView;
 
 /***/ })
 /******/ ]);
