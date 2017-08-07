@@ -28,10 +28,7 @@ class TaskListItem extends React.Component {
   render() {
     const { task, updateTask } = this.props;
     const { title, done } = task;
-    let detail;
-    if (this.state.detail) {
-      detail = <TaskDetailViewContainer task={ todo } />;
-    }
+
 
     return (
       <li className="task-list-item">
@@ -43,7 +40,6 @@ class TaskListItem extends React.Component {
             { done ? "Undo" : "Done"}
           </button>
         </div>
-        { detail }
       </li>
     );
   }

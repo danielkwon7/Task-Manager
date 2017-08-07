@@ -1,5 +1,6 @@
 import React from 'react';
 import TaskListItem from './task_list_item';
+import TaskForm from './task_form';
 
 
 class TaskList extends React.Component {
@@ -17,6 +18,7 @@ class TaskList extends React.Component {
         <ul className="task-list">
           { taskItems }
         </ul>
+        <TaskForm receiveTask={ receiveTask }/>
       </div>
     );
   }
