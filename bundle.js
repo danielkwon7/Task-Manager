@@ -23619,10 +23619,15 @@ var _tasks_reducer = __webpack_require__(211);
 
 var _tasks_reducer2 = _interopRequireDefault(_tasks_reducer);
 
+var _steps_reducer = __webpack_require__(334);
+
+var _steps_reducer2 = _interopRequireDefault(_steps_reducer);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var RootReducer = (0, _redux.combineReducers)({
-  tasks: _tasks_reducer2.default
+  tasks: _tasks_reducer2.default,
+  steps: _steps_reducer2.default
 });
 
 exports.default = RootReducer;
@@ -23711,6 +23716,19 @@ var allTasks = exports.allTasks = function allTasks(_ref) {
   return Object.keys(tasks).map(function (id) {
     return tasks[id];
   });
+};
+
+var stepsByTaskId = exports.stepsByTaskId = function stepsByTaskId(_ref2, task_id) {
+  var steps = _ref2.steps;
+
+  var stepsByTaskId = [];
+  Object.keys(steps).forEach(function (stepId) {
+    var step = steps[stepId];
+    if (steps[stepId].task_id === task_id) {
+      stepsByTaskId.push(step);
+    };
+  });
+  return stepsByTaskId;
 };
 
 /***/ }),
@@ -28300,6 +28318,8 @@ var _task_detail_view2 = _interopRequireDefault(_task_detail_view);
 
 var _task_actions = __webpack_require__(89);
 
+var _step_actions = __webpack_require__(335);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch, _ref) {
@@ -28377,6 +28397,89 @@ var TaskDetailView = function (_React$Component) {
 }(_react2.default.Component);
 
 exports.default = TaskDetailView;
+
+/***/ }),
+/* 334 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _step_actions = __webpack_require__(335);
+
+var _merge2 = __webpack_require__(264);
+
+var _merge3 = _interopRequireDefault(_merge2);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+var stepsReducer = function stepsReducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var action = arguments[1];
+
+  var nextState = void 0;
+  Object.freeze(state);
+
+  switch (action.type) {
+    case _step_actions.RECEIVE_STEPS:
+      nextState = (0, _merge3.default)({}, state);
+      action.steps.forEach(function (step) {
+        return nextState[step.id] = step;
+      });
+      return nextState;
+    case _step_actions.RECEIVE_STEP:
+      return (0, _merge3.default)({}, state, _defineProperty({}, action.step.id, action.step));
+    case _step_actions.REMOVE_STEP:
+      nextState = (0, _merge3.default)({}, state);
+      delete nextState[action.step.id];
+      return nextState;
+    default:
+      return state;
+  }
+};
+
+exports.default = stepsReducer;
+
+/***/ }),
+/* 335 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var RECEIVE_STEPS = exports.RECEIVE_STEPS = "RECEIVE_STEPS";
+var RECEIVE_STEP = exports.RECEIVE_STEP = "RECEIVE_STEP";
+var REMOVE_STEP = exports.REMOVE_STEP = "REMOVE_STEP";
+
+var receiveSteps = exports.receiveSteps = function receiveSteps(steps) {
+  return {
+    type: RECEIVE_STEPS,
+    steps: steps
+  };
+};
+
+var receiveStep = exports.receiveStep = function receiveStep(step) {
+  return {
+    type: RECEIVE_STEP,
+    step: step
+  };
+};
+
+var removeStep = exports.removeStep = function removeStep(step) {
+  return {
+    type: REMOVE_STEP,
+    step: step
+  };
+};
 
 /***/ })
 /******/ ]);
